@@ -1,0 +1,214 @@
+<html>
+  <head>
+      <title>Clock</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- <link rel="stylesheet" href="style.css" /> -->
+      <style type="text/css">
+        * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+   background-image:url("back4.jpg");
+}
+
+.clock {
+  height: 500px;
+  width: 500px;
+  /*background-color: white;*/
+  border-radius: 100%;
+  border: 5px solid #577849;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+ /* -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);*/
+  background-image:url("back.jpeg");
+
+}
+.outer {
+  height: 520px;
+  width: 520px;
+  /*background-color: #dddddd;*/
+  border-radius: 100%;
+  border: 7px solid #286327;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+ box-shadow:20px 20px 50px 10px grey inset;  
+/* -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
+  
+
+}
+.outer2 {
+  height: 540px;
+  width: 540px;
+  /*background-color: #dddddd;*/
+  border-radius: 100%;
+  border: 9px solid #163715;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+ box-shadow:20px 20px 50px 10px grey inset;  
+/* -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
+  
+
+}
+.twelve {
+  position: absolute;
+  width: 6px;
+  height: 15px;
+  background: #111111;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.three {
+  position: absolute;
+  width: 15px;
+  height: 6px;
+  background: #111111;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto 0;
+}
+
+.six {
+  position: absolute;
+  width: 6px;
+  height: 15px;
+  background: #111111;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.nine {
+  position: absolute;
+  width: 15px;
+  height: 6px;
+  background: #111111;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto 0;
+}
+.center {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  background: #000;
+  border-radius: 100%;
+}
+
+#seconds {
+  position: absolute;
+  height: 160px;
+  width: 5px;
+  left: 0;
+  right: 0;
+  bottom: 160px;
+  top: 0px;
+  margin: auto;
+  background: #000;
+  -webkit-transform-origin: bottom;
+  background: #a66d34;
+  /*transition: 1s linear;*/
+}
+
+#minutes {
+  position: absolute;
+  height: 200px;
+  width: 7px;
+  left: 0;
+  right: 0;
+  bottom: 200px;
+  top: 0px;
+  margin: auto;
+  background: #163715;
+  -webkit-transform-origin: bottom;
+}
+
+#hours {
+  position: absolute;
+  height: 80px;
+  width: 9px;
+  left: 0;
+  right: 0;
+  bottom: 80px;
+  top: 0px;
+  margin: auto;
+  background: #163715;
+  -webkit-transform-origin: bottom;
+}
+      </style>
+  </head>
+
+  <body>
+     <div class="outer2">  
+     <div class="outer">
+      <div class="clock">
+          <div id="hours"></div>
+          <div id="minutes"></div>
+          <div id="seconds"></div>
+          <div class="three"></div>
+          <div class="six"></div>
+          <div class="nine"></div>
+          <div class="twelve"></div>
+          <div class="center"></div>
+      </div>
+      </div>
+      </div>
+
+      <script type="text/javascript" >
+        function moveHands() {
+                  with (new Date()) {
+                    h = 30 * ((getHours() % 12) + getMinutes() / 60); // 30 degrees hour
+                    m = 6 * getMinutes(); // 6 degrees every minute
+                    s = 6 * getSeconds(); // 6 degrees every second
+                    // setting the rotate CSS attribute to those degree values -->
+                    document.getElementById("seconds").style.cssText =
+                      "-webkit-transform:rotate(" + s + "deg);";
+                    document.getElementById("minutes").style.cssText =
+                      "-webkit-transform:rotate(" + m + "deg);";
+                    document.getElementById("hours").style.cssText =
+                      "-webkit-transform:rotate(" + h + "deg);";
+
+                    setTimeout(moveHands, 1000); // calling the function every second
+  }
+}
+
+           window.onload = moveHands; // making sure the function starts on load of webpage
+      </script>
+  </body>  

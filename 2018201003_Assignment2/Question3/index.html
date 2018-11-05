@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" src="mycss.css"> -->
+  <script language="javascript">
+function randomhouse()
+{
+  var houseURL = "https://anapioficeandfire.com/api/houses/";
+    var rand = Math.floor((Math.random() * 444) + 1);
+    var url=houseURL+rand;
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = function() {
+              var status = request.status;
+              if (status == 200)
+              {
+                var title=JSON.parse(request.response).name;
+                var gender=JSON.parse(request.response).region;
+                var culture=JSON.parse(request.response).coatOfArms;
+                var x = document.getElementById("chill");
+                 x.style.display = "block";
+                var te="<b>"+title+"<br>"+gender+"<br>"+culture+"<b>";
+                x.innerHTML=te;
+              }
+      };
+     request.send();
+}
+function namechar()
+{
+    var charURL = "https://anapioficeandfire.com/api/characters/?name=";
+    imageno=1;
+    var char=document.getElementById('cool').value;
+    if(char!="")
+    {
+    var url=charURL+char;
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = function() {
+              var status = request.status;
+              if (status == 200)
+              {
+                var title=JSON.parse(request.response)[0].name;
+                var gender=JSON.parse(request.response)[0].gender;
+                var culture=JSON.parse(request.response)[0].culture;
+                var born=JSON.parse(request.response)[0].born;
+                var x = document.getElementById("chill");
+                 x.style.display = "block";
+                var te="<b>"+title+"<br>"+gender+"<br>"+culture+"<br>"+born+"<b>";
+                x.innerHTML=te;
+              }
+      };
+     request.send();
+   }
+}
+function namehouse()
+{
+    var houseURL = "https://anapioficeandfire.com/api/houses/?name=";
+    imageno=1;
+    var house = document.getElementById('cool').value;
+    if(house!="")
+      {
+          var url=houseURL+house;
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = function() {
+              var status = request.status;
+              if (status == 200)
+              {
+                var title=JSON.parse(request.response)[0].name;
+                var gender=JSON.parse(request.response)[0].region;
+                var culture=JSON.parse(request.response)[0].coatOfArms;
+                var x = document.getElementById("chill");
+                 x.style.display = "block";
+                var te="<b>"+title+"<br>"+gender+"<br>"+culture+"<b>";
+                x.innerHTML=te;
+              }
+      };
+     request.send();
+   }
+}
+
+function randomchar()
+{
+   var charURL = "https://anapioficeandfire.com/api/characters/";
+    var rand = Math.floor((Math.random() * 2138) + 1);
+    var url=charURL+rand;
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = function() {
+              var status = request.status;
+              if (status == 200)
+              {
+                var title=JSON.parse(request.response).name;
+                var gender=JSON.parse(request.response).gender;
+                var culture=JSON.parse(request.response).culture;
+                var born=JSON.parse(request.response).born;
+                var x = document.getElementById("chill");
+                 x.style.display = "block";
+                var te="<b>"+title+"<br>"+gender+"<br>"+culture+"<br>"+born+"<b>";
+                x.innerHTML=te;
+              }
+      };
+     request.send();
+}
+function randomcharfromhouse()
+{
+  var houseURL = "https://anapioficeandfire.com/api/houses/?name=";
+   var house = document.getElementById('cool').value;
+   if(house!="")
+   {
+     var url=houseURL+house;
+     var y;
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = function() {
+              var status = request.status;
+              if (status == 200)
+              {
+                y=JSON.parse(request.response)[0].swornMembers.length;
+                var rand=Math.floor((Math.random()*y)+1);
+                y=JSON.parse(request.response)[0].swornMembers[rand];
+                secondf(y);
+              }
+      };
+     request.send();
+     }
+
+}
+function secondf(y)
+{
+   var request = new XMLHttpRequest();
+     request.open('GET',y);
+     request.onload = function() {
+              var status = request.status;
+              if (status == 200)
+              {
+                var title=JSON.parse(request.response).name;
+                var gender=JSON.parse(request.response).gender;
+                var culture=JSON.parse(request.response).culture;
+                var born=JSON.parse(request.response).born;
+                var x = document.getElementById("chill");
+                 x.style.display = "block";
+                var te="<b>"+title+"<br>"+gender+"<br>"+culture+"<br>"+born+"<b>";
+                x.innerHTML=te;
+              }
+      };
+     request.send();
+}
+</script>
+  <style>
+  .bg {
+  background-image: url("back5.jpg");
+  height: 500px; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+#chill{
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    /*background-color: lightblue;*/
+    margin-top: 20px;
+    display: none;
+    opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+.b {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+.con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+</style>
+<audio controls autoplay loop>
+  <source src="got.mp3" type="audio/ogg">
+  <embed src="got.mp3" autostart="true" loop="true" hidden="true"> 
+</audio></head>
+<body class="bg">
+  <div class="container-fluid align-items-center vertical-center-row">
+      <div class="row">
+            <div class="form-group container col-md-2 col-sm-2 col-xs-2 center"></div>
+            <div class="form-group  col-md-8 col-sm-8 col-xs-8 center">
+                <input type="text" class="form-control b" id="cool" type="text" placeholder="Search......" name="search" >
+           </div>
+     </div>
+     <div class="row container-fluid con">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-success  " onClick="javascript:namechar();">Characters By Name</button>
+        <button class="btn btn-primary " onClick="javascript:namehouse();">House By Name</button>
+        <button class="btn " onClick="javascript:randomchar();">Random Character</button>
+        <button class="btn btn-primary " onClick="javascript:randomhouse();">Random House</button>
+        <button class="btn btn-success  " onClick="javascript:randomcharfromhouse();">Random character By House Name</button>
+    </div>
+  <div class="container">
+        <div class="jumbotron" id="chill">
+        </div>
+  </div>
+</div> 
+</body>
+</html>

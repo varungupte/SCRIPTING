@@ -1,0 +1,106 @@
+<html>
+    <head>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  #id{
+  width: 200px;
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-bottom:15px;
+}
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
+</style>
+    </head>
+<body>
+  
+<div class="container">
+ <video autoplay muted loop id="myVideo">
+  <source src="back.mp4" type="video/mp4">
+</video>
+
+     
+<div class="row">
+               <br>
+           </div>
+
+  <div class="row">
+
+    <div class="col-md-6  " >
+          <div class="row" >
+            <div class="form-group">
+            <textarea  id="cool" style="resize: none;" rows="25" class="form-group col-md-10 col-sm-12 col-xs-12" placeholder="Please type the input here....." onkeyup="injectHTML();"></textarea>
+            </div>
+           </div> 
+
+            <div class="row" >
+             <button onClick="javascript:injectHTML();" class="btn btn-success">Run>></button>
+            <button onClick="javascript:cleartextarea();" class="btn btn-success">Clear TextArea</button>
+           </div> 
+           <div class="row">
+               <br>
+           </div>
+    </div>
+    <div class="col-md-6 " >
+           <div class="row" >
+              <iframe id="test_iframe" src="about:blank" class="form-group col-md-10 col-sm-12 col-xs-12 " height="500"  style="background-color:white" placeholder="Output"></iframe>
+            </div>
+            <div class="row" >
+                <button onClick="javascript:cleariframe();" class="btn btn-success">Clear Output</button>
+            </div>   
+      
+    </div>
+  </div>
+
+</div>
+</body>
+ 
+<script language="javascript">
+function injectHTML(){
+    var iframe = document.getElementById('test_iframe');
+ 
+    var html_string = document.getElementById('cool').value;
+ 
+    //step 2: obtain the document associated with the iframe tag
+    //most of the browser supports .document. Some supports (such as the NetScape series) .contentDocumet, while some (e.g. IE5/6) supports .contentWindow.document
+    //we try to read whatever that exists.
+    var iframedoc = iframe.document;
+        if (iframe.contentDocument)
+            iframedoc = iframe.contentDocument;
+        else if (iframe.contentWindow)
+            iframedoc = iframe.contentWindow.document;
+ 
+     if (iframedoc){
+         // Put the content in the iframe
+         iframedoc.open();
+         iframedoc.writeln(html_string);
+         iframedoc.close();
+     } else {
+        //just in case of browsers that don't support the above 3 properties.
+        //fortunately we don't come across such case so far.
+        alert('Cannot inject dynamic contents into iframe.');
+     }
+ 
+}
+function cleartextarea()
+{
+    document.getElementById("cool").value = "";
+}
+function cleariframe()
+{
+var iframe = document.getElementById("test_iframe");
+var html = "";
+
+iframe.contentWindow.document.open();
+iframe.contentWindow.document.write(html);
+iframe.contentWindow.document.close();
+}</script>
+</html>
